@@ -9,14 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Customer Info Page</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">    
     </head>
     <body>
         <h1>Hye Users</h1>
-        <h2>name = ${customer.id}</h2>
-        <h2>name = ${customer.name}</h2>
-        <h2>name = ${customer.height}</h2>
-        <h2>name = ${customer.weight}</h2>
-        <h2>name = ${customer.yob}</h2>
+    
     </body>
 </html>

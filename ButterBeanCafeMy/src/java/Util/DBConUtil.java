@@ -13,7 +13,7 @@ import java.sql.DriverManager;
  * @author User
  */
 public class DBConUtil {
-    private static final String connectionURL ="jdbc:mysql://localhost:3306/butterbeanscafe";
+    private static final String connectionURL ="jdbc:mysql://localhost:3306/bundleBean";
     private static final String driver ="com.mysql.jdbc.Driver";
     private static final String username ="root";
     private static final String password ="";

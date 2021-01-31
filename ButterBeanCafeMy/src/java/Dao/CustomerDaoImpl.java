@@ -26,7 +26,7 @@ public class CustomerDaoImpl implements CustomerDao{
     public List<CustomerBean> getCustomerAll() {
         List<CustomerBean> customerList = null;
         try{
-            String sql = "SELECT * FROM customer";
+            String sql = "SELECT * FROM user";
             customerList = new ArrayList<CustomerBean>();
             conn = DBConUtil.openConnection();
             stmt = conn.createStatement();
@@ -36,9 +36,9 @@ public class CustomerDaoImpl implements CustomerDao{
                 CustomerBean m = new CustomerBean();
                 m.setId(rs.getInt("uid"));
                 m.setName(rs.getString("name"));
-                m.setHeight(rs.getDouble("height"));
-                m.setWeight(rs.getDouble("weight"));
-                m.setYob(rs.getInt("yob"));
+                m.setEmail(rs.getString("email"));
+                m.setCategory(rs.getString("category"));
+                m.setPassword(rs.getString("password"));
                 customerList.add(m);
             }
         }
@@ -52,12 +52,12 @@ public class CustomerDaoImpl implements CustomerDao{
     public void addCustomer(CustomerBean m) {
         try{
             conn = DBConUtil.openConnection();
-            String sql = "insert into customer (name, yob, weight, height) values (?,?,?,?)";
+            String sql = "insert into user (name, email, category, password) values (?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, m.getName());
-            pstmt.setInt(2, m.getYob());
-            pstmt.setDouble(3, m.getWeight());
-            pstmt.setDouble(4, m.getHeight());
+            pstmt.setString(2, m.getEmail());
+            pstmt.setString(3, m.getCategory());
+            pstmt.setString(4, m.getPassword());
             pstmt.execute();
             
         } 
@@ -70,7 +70,7 @@ public class CustomerDaoImpl implements CustomerDao{
     public CustomerBean getCustomerById(int id){
         CustomerBean customer = new CustomerBean();
         try{
-            String sql = "Select * From customer where (uid=?)";
+            String sql = "Select * From user where (uid=?)";
             conn = DBConUtil.openConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,id);
@@ -78,9 +78,9 @@ public class CustomerDaoImpl implements CustomerDao{
             while(rs.next()){
                 customer.setId(rs.getInt("uid"));
                 customer.setName(rs.getString("name"));
-                customer.setYob(rs.getInt("yob"));
-                customer.setWeight(rs.getDouble("weight"));
-                customer.setHeight(rs.getDouble("height"));
+                customer.setEmail(rs.getString("email"));
+                customer.setPassword(rs.getString("password"));
+                customer.setCategory(rs.getString("category"));
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -92,7 +92,7 @@ public class CustomerDaoImpl implements CustomerDao{
     public void deleteCust(int id){
         try{
             conn = DBConUtil.openConnection();
-            String sql = "delete from customer where (uid = ?)";
+            String sql = "delete from user where (uid = ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,id);
             pstmt.executeUpdate();
@@ -106,12 +106,12 @@ public class CustomerDaoImpl implements CustomerDao{
     public void updateCustInfo(CustomerBean c) {
         try{
             conn = DBConUtil.openConnection();
-            String sql = "update customer set name=?, yob = ?, height=?, weight = ? where id = ?";
+            String sql = "update user set name=?, category = ?, email=?, weight = ? where id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, c.getName());
-            pstmt.setInt(2, c.getYob());
-            pstmt.setDouble(3, c.getWeight());
-            pstmt.setDouble(4, c.getHeight());
+            pstmt.setString(2, c.getCategory());
+            pstmt.setString(3, c.getEmail());
+            pstmt.setString(4, c.getPassword());
             pstmt.execute();
             conn.close();
 

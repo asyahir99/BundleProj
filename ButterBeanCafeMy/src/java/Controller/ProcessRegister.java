@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author User
  */
-@WebServlet(name = "ProcessRegisterBMI", urlPatterns = {"/ProcessRegBMI"})
-public class ProcessRegisterBMI extends HttpServlet {
+@WebServlet(name = "ProcessRegister", urlPatterns = {"/ProcessReg"})
+public class ProcessRegister extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,9 @@ public class ProcessRegisterBMI extends HttpServlet {
         CustomerBean cb = new CustomerBean();
         CustomerDaoImpl c = new CustomerDaoImpl();
         cb.setName(request.getParameter("username"));
-        cb.setYob(Integer.parseInt(request.getParameter("yob")));
-        cb.setWeight(Double.parseDouble(request.getParameter("weight")));
-        cb.setHeight(Double.parseDouble(request.getParameter("height")));
-        cb.calculateBMICategory();
+        cb.setCategory(request.getParameter("category"));
+        cb.setPassword(request.getParameter("password"));
+        cb.setEmail(request.getParameter("email"));
         c.addCustomer(cb);
         request.getSession().setAttribute("cb", cb);
         response.sendRedirect("OrderForm.jsp");

@@ -11,17 +11,17 @@ import java.io.Serializable;
  *
  * @author User
  */
-public class Menu implements Serializable {
+public class Item implements Serializable {
     private int id;
-    private String menu;
+    private String item;
     private double price;
     private int quantity;
 
-    public Menu() {}
+    public Item() {}
 
-    public Menu(int id, String menu, double price, int quantity) {
+    public Item(int id, String item, double price, int quantity) {
         this.id = id;
-        this.menu = menu;
+        this.item = item;
         this.price = price;
         this.quantity = quantity;
     }
@@ -34,12 +34,12 @@ public class Menu implements Serializable {
         this.id = id;
     }
 
-    public String getMenu() {
-        return menu;
+    public String getItem() {
+        return item;
     }
 
-    public void setMenu(String menu) {
-        this.menu = menu;
+    public void setItem(String menu) {
+        this.item = menu;
     }
 
     public double getPrice() {

@@ -5,12 +5,10 @@
  */
 package Controller;
 
-import Dao.CustomerDao;
-import Dao.CustomerDaoImpl;
-import Model.CustomerBean;
+import Dao.*;
+import Model.Item;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Asus
+ * @author ahmad
  */
-@WebServlet(name = "updateCust2", urlPatterns = {"/updateCust2"})
-public class custUpdate2 extends HttpServlet {
+@WebServlet(name = "updateStock", urlPatterns = {"/updateStock"})
+public class updateStock extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,16 +32,15 @@ public class custUpdate2 extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");        
+        throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         int id = Integer.parseInt(request.getParameter("id"));
-        String fName=request.getParameter("name");
-        int Yob=Integer.parseInt(request.getParameter("yob"));
-        Double Height=Double.parseDouble(request.getParameter("height"));
-        Double Weight=Double.parseDouble(request.getParameter("weight"));
-        CustomerDao cDB = new CustomerDaoImpl();
-        CustomerBean c =  new CustomerBean(id, fName, Yob, Height, Weight);
-        cDB.updateCustInfo(c);
+        String item = request.getParameter("item");
+        double price = Double.parseDouble(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        ItemDao c =  new ItemDaoImpl();
+        Item items = new Item(id, item, price, quantity);
+        c.updateItemInfo(c);
         response.sendRedirect("getAllCustomer.jsp");
     }
 

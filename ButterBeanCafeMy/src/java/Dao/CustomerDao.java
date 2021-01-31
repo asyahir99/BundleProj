@@ -5,7 +5,6 @@
  */
 package Dao;
 import Model.CustomerBean;
-import Model.Menu;
 import java.util.List;
 
 /**
